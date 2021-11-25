@@ -1,14 +1,12 @@
 def get_command_line_argument
-   
     if ARGV.empty?
       puts "Usage: ruby lookup.rb <domain>"
       exit
     end
     ARGV.first
   end
-  
-  domain = get_command_line_argument 
-  dns_raw = File.readlines("zone")
+domain = get_command_line_argument 
+dns_raw = File.readlines("zone")
   def parse_dns(dns_raw)
         hash= {}
         dns_raw.each do |record|
@@ -19,7 +17,6 @@ def get_command_line_argument
         end
     return hash
     end
-
 def resolve(dns_records, lookup_chain, domain)
       if lookup_chain[-1].is_a? String 
         lookup_chain.push(dns_records[domain])
