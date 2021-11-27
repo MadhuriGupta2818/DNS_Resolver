@@ -18,14 +18,13 @@ dns_raw = File.readlines("zone")
             end
         end
     return hash
-    end
+ end
 
 def resolve(dns_records, lookup_chain, domain)
       if lookup_chain[-1].is_a? String 
         lookup_chain.push(dns_records[domain])
         resolve(dns_records, lookup_chain,lookup_chain[-1])
       end
-    
     res = lookup_chain[0..-2]
     if res.length<2
       puts "Error: record not found for " + lookup_chain[0]
